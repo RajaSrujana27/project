@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="todo-app">
+            <h1>TO-DO LIST <img src="images/icon.png" alt="icon"></h1>
+            <div class="task-input">
+                <input type="text" id="task-name" placeholder="Task Name" maxlength="30">
+                <input type="date" id="task-due-date">
+                <select id="task-priority">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                <input type="text" id="task-category" placeholder="Category/Tag" maxlength="15">
+                <button id="add-task-btn">Add Task</button>
+            </div>
+    
+            <div class="task-filter">
+                <button data-filter="all">All</button>
+                <button data-filter="completed">Completed</button>
+                <button data-filter="pending">Pending</button>
+            </div>
+    
+            <ul id="task-list"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

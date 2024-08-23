@@ -1,0 +1,202 @@
+/* Reset and Basic Styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #e0f7fa; /* Soft blue background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Container Styling */
+.container {
+    width: 100%;
+    max-width: 540px;
+    background: linear-gradient(135deg, #1e3a8a, #9333ea); /* Gradient background */
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Todo App Styling */
+.todo-app {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Header Styling */
+.todo-app h1 {
+    color: #1d4ed8; /* Trending blue color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.todo-app h1 img {
+    width: 30px;
+    margin-left: 10px;
+}
+
+/* Task Input Styling */
+.task-input {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.task-input input, .task-input select {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.task-input button {
+    padding: 15px;
+    font-size: 16px;
+    background-color: #ff5722; /* Trending orange color */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.task-input button:hover {
+    background-color: #e64a19; /* Darker shade on hover */
+}
+
+/* Task Filter Styling */
+.task-filter {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-filter button {
+    flex: 1;
+    padding: 10px;
+    margin: 0 5px;
+    background-color: #2196f3; /* Trending blue color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.task-filter button:hover {
+    background-color: #1976d2; /* Darker shade on hover */
+}
+
+/* Task List Styling */
+#task-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f8e9; /* Light green background */
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.task-item.completed {
+    text-decoration: line-through;
+    background-color: #c8e6c9; /* Darker green for completed tasks */
+}
+
+.task-item span {
+    font-size: 14px;
+    color: #424242; /* Dark gray text */
+    max-width: 60%; /* Ensures text doesn't overflow */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.task-item button {
+    background-color: #d32f2f; /* Trending red color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s ease;
+}
+.task-buttons button {
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.task-buttons button:hover {
+    background-color: #ddd;
+}
+.task-buttons button:hover {
+    background-color: #ddd;
+}
+.task-buttons button {
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.task-buttons {
+    display: flex;
+    gap: 10px; 
+    margin-top: 10px;
+}
+
+.task-item button:hover {
+    background-color: #c62828; /* Darker red on hover */
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+    .todo-app {
+        padding: 15px;
+    }
+
+    .task-input {
+        gap: 10px;
+    }
+
+    .task-input button {
+        padding: 12px;
+    }
+
+    .task-filter button {
+        padding: 8px;
+        margin: 0 3px;
+    }
+
+    .task-item {
+        padding: 10px;
+    }
+
+    .task-item button {
+        padding: 6px 10px;
+    }
+    .task-buttons {
+        flex-direction: column;
+        gap: 5px; 
+    }
+}
