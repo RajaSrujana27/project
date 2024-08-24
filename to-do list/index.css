@@ -107,6 +107,7 @@ body {
 
 .task-item {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background-color: #f1f8e9; /* Light green background */
@@ -123,10 +124,27 @@ body {
 .task-item span {
     font-size: 14px;
     color: #424242; /* Dark gray text */
-    max-width: 60%; /* Ensures text doesn't overflow */
+    max-width: 40%; 
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.task-item span.task-title {
+    font-size: 18px; /* Slightly larger for better visibility */
+    color: #424242; /* Dark gray text */
+    word-wrap: break-word; /* Allow wrapping to next line */
+}
+
+.task-item span.task-details {
+    font-size: 14px;
+    color: #616161;
+    margin-top: 5px; /* Space between title and details */
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 8px;
 }
 
 .task-item button {
@@ -134,10 +152,23 @@ body {
     color: white;
     border: none;
     padding: 8px 12px;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    margin-left: 5px;
+    margin-left: 11px;
     transition: background-color 0.3s ease;
+}
+.task-item .task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 60%; /* Increased width to accommodate the entire task title */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.task-item .task-buttons {
+    display: flex;
+    gap: 10px; 
+    margin-top: 10px;
 }
 .task-buttons button {
     padding: 0.5em 1em;
@@ -168,6 +199,44 @@ body {
 .task-item button:hover {
     background-color: #c62828; /* Darker red on hover */
 }
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; 
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 
 /* Media Query for Mobile Devices */
 @media (max-width: 768px) {
@@ -191,9 +260,19 @@ body {
     .task-item {
         padding: 10px;
     }
+    .task-item span.task-title {
+        font-size: 14px;
+    }
+
+    .task-item span.task-details {
+        font-size: 12px;
+    }
 
     .task-item button {
         padding: 6px 10px;
+    }
+    .task-item .task-info {
+        max-width: 100%;
     }
     .task-buttons {
         flex-direction: column;
