@@ -11,21 +11,21 @@ const closeModal = document.querySelector('.close');
 const taskDetails = document.getElementById('task-details');
 
 // Event Listeners
-//document.addEventListener('DOMContentLoaded', loadTasks);
-//addTaskBtn.addEventListener('click', addTask);
-//taskList.addEventListener('click', modifyTask);
-//filterButtons.forEach(button => button.addEventListener('click', filterTasks));
-//closeModal.addEventListener('click', () => taskModal.style.display = 'none');
-//window.addEventListener('click', (e) => {
-  //  if (e.target == taskModal) {
-    //    taskModal.style.display = 'none';
-    //}
-//});
-// Event Listeners
 document.addEventListener('DOMContentLoaded', loadTasks);
 addTaskBtn.addEventListener('click', addTask);
 taskList.addEventListener('click', modifyTask);
 filterButtons.forEach(button => button.addEventListener('click', filterTasks));
+closeModal.addEventListener('click', () => taskModal.style.display = 'none');
+window.addEventListener('click', (e) => {
+    if (e.target == taskModal) {
+        taskModal.style.display = 'none';
+    }
+});
+// Event Listeners
+//document.addEventListener('DOMContentLoaded', loadTasks);
+//addTaskBtn.addEventListener('click', addTask);
+//taskList.addEventListener('click', modifyTask);
+//filterButtons.forEach(button => button.addEventListener('click', filterTasks));
 
 
 // Functions
@@ -58,35 +58,43 @@ function modifyTask(e) {
         const filteredTasks = tasks.filter(task => task.name !== taskName);
         localStorage.setItem('tasks', JSON.stringify(filteredTasks));
         renderTasks(filteredTasks);
-    } else if (item.textContent === 'Complete') {
-        tasks.forEach(task => {
+    }
+
+    if (item.textContent === 'Complete') {
+        const updatedTasks = tasks.map(task => {
             if (task.name === taskName) {
                 task.completed = !task.completed;
             }
+            return task;
         });
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        renderTasks(tasks);
-    } else if (item.textContent === 'View') {
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+        renderTasks(updatedTasks);
+    }
+
+    if (item.textContent === 'View') {
         const task = tasks.find(task => task.name === taskName);
-        alert(`Task: ${task.name}\nDue Date: ${task.dueDate}\nPriority: ${task.priority}\nCategory: ${task.category}`);
+        showModal(task);
     }
 }
-
 function filterTasks(e) {
-    const filter = e.target.getAttribute('data-filter');
+    const filter = e.target.dataset.filter;
     const tasks = getTasksFromStorage();
 
-    let filteredTasks;
     if (filter === 'all') {
-        filteredTasks = tasks;
+        renderTasks(tasks);
     } else if (filter === 'completed') {
-        filteredTasks = tasks.filter(task => task.completed);
+        const completedTasks = tasks.filter(task => task.completed);
+        renderTasks(completedTasks);
     } else {
-        filteredTasks = tasks.filter(task => !task.completed);
+        const pendingTasks = tasks.filter(task => !task.completed);
+        renderTasks(pendingTasks);
     }
-
-    renderTasks(filteredTasks);
 }
+
+function getTasksFromStorage() {
+    return localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
+}
+
 function renderTasks(tasks) {
     taskList.innerHTML = '';
     tasks.forEach(task => {
@@ -111,42 +119,28 @@ function renderTasks(tasks) {
         taskList.appendChild(taskItem);
     });
 }
-
-function clearInputs() {
-    taskInput.value = '';
-    dueDateInput.value = '';
-    priorityInput.value = 'medium';
-    categoryInput.value = '';
-}
-
-function getTasksFromStorage() {
-    const tasks = localStorage.getItem('tasks');
-    return tasks ? JSON.parse(tasks) : [];
-}
-
 function loadTasks() {
     const tasks = getTasksFromStorage();
     renderTasks(tasks);
 }
+function clearInputs() {
+    taskInput.value = '';
+    dueDateInput.value = '';
+    priorityInput.selectedIndex = 0;
+    categoryInput.value = '';
+}
 
-function showTaskDetails(task) {
-    taskDetails.textContent = `Task: ${task.name}\nDue Date: ${task.dueDate}\nPriority: ${task.priority}\nCategory: ${task.category}\nCompleted: ${task.completed ? 'Yes' : 'No'}`;
+function showModal(task) {
     taskModal.style.display = 'block';
+    taskDetails.innerHTML = `
+        <h2>${task.name}</h2>
+        <p>Due Date: ${task.dueDate}</p>
+        <p>Priority: ${task.priority}</p>
+        <p>Category: ${task.category}</p>
+        <p>Completed: ${task.completed ? 'Yes' : 'No'}</p>
+    `;
 }
 
-function clearInputs() {
-    taskInput.value = '';
-    dueDateInput.value = '';
-    priorityInput.value = 'medium';
-    categoryInput.value = '';
-}
 
-function getTasksFromStorage() {
-    const tasks = localStorage.getItem('tasks');
-    return tasks ? JSON.parse(tasks) : [];
-}
 
-function loadTasks() {
-    const tasks = getTasksFromStorage();
-    renderTasks(tasks);
-}
+

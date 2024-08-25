@@ -5,33 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <div class="todo-app">
             <h1>TO-DO LIST <img src="images/icon.png" alt="icon"></h1>
             <div class="task-input">
-                <input type="text" id="task-name" placeholder="Task Name" maxlength="30">
-                <input type="date" id="task-due-date">
-                <select id="task-priority">
+                <input type="text" id="task-name" placeholder="Task Name" maxlength="30" aria-label="Task Name">
+                <input type="date" id="task-due-date" aria-label="Task Due Date">
+                <select id="task-priority" aria-label="Task Priority">
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
                 </select>
-                <input type="text" id="task-category" placeholder="Category/Tag" maxlength="30">
-                <button id="add-task-btn">Add Task</button>
+                <input type="text" id="task-category" placeholder="Category/Tag" maxlength="30" aria-label="Task Category">
+                <button id="add-task-btn"><i class="fas fa-plus"></i> Add Task</button>
             </div>
     
             <div class="task-filter">
-                <button data-filter="all">All</button>
-                <button data-filter="completed">Completed</button>
-                <button data-filter="pending">Pending</button>
+                <button data-filter="all"><i class="fas fa-list"></i> All</button>
+                <button data-filter="completed"><i class="fas fa-check-circle"></i> Completed</button>
+                <button data-filter="pending"><i class="fas fa-clock"></i> Pending</button>
             </div>
     
             <ul id="task-list"></ul>
         </div>
     </div>
 
-    <script src="script.js"></script> <!-- Move this to the bottom -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="task-details"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

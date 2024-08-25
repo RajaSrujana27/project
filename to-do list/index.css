@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #e0f7fa; /* Soft blue background */
+    background-color: #e0f7fa; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,6 +120,12 @@ body {
     text-decoration: line-through;
     background-color: #c8e6c9; /* Darker green for completed tasks */
 }
+.task-item .task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
 
 .task-item span {
     font-size: 14px;
@@ -146,17 +152,16 @@ body {
     white-space: nowrap;
     margin-bottom: 8px;
 }
-
 .task-item button {
+    padding: 8px 12px;
     background-color: #d32f2f; /* Trending red color */
     color: white;
     border: none;
-    padding: 8px 12px;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    margin-left: 11px;
     transition: background-color 0.3s ease;
 }
+
 .task-item .task-info {
     display: flex;
     flex-direction: column;
@@ -209,7 +214,6 @@ body {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; 
-    background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
@@ -236,6 +240,23 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+button {
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.todo-app h1 {
+    background: linear-gradient(135deg, #1e3a8a, #9333ea);
+    background-size: 200% 200%;
+    animation: gradient-animation 5s ease infinite;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
 
 
 /* Media Query for Mobile Devices */
