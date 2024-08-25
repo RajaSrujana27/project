@@ -13,6 +13,7 @@ body {
     align-items: center;
     padding: 20px;
     margin: 0;
+    padding: 0;
 }
 
 /* Container Styling */
@@ -64,8 +65,8 @@ body {
 .task-input input:focus, .task-input select:focus {
     border-color: #6200ea; /* Trending purple focus color */
 }
-
 .task-input button {
+    flex: 1 1 100%;
     padding: 15px;
     font-size: 16px;
     background-color: #ff5722; /* Trending orange color */
@@ -113,6 +114,23 @@ body {
 #task-list {
     list-style: none;
     padding: 0;
+}
+#task-list li.completed {
+    text-decoration: line-through;
+    color: #62e42e;
+}
+
+#task-list li button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+    font-size: 1.2em;
+    margin-left: 10px;
+}
+
+#task-list li button:hover {
+    color: #0056b3;
 }
 
 .task-item {
@@ -177,7 +195,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    width: 60%; /* Increased width to accommodate the entire task title */
+    width: 60%;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -256,11 +274,13 @@ body {
 
 
 /* Media Query for Mobile Devices */
-@media (max-width: 768px) {
+@media (max-width: 608px) {
+    h1 {
+        font-size: 1.5rem;
+    }
     .todo-app {
         padding: 15px;
     }
-
     .task-input {
         gap: 10px;
     }
@@ -273,7 +293,6 @@ body {
         padding: 8px;
         margin: 0 3px;
     }
-
     .task-item {
         padding: 10px;
     }
