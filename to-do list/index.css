@@ -110,27 +110,9 @@ body {
     background-color: #083575; /* Darker blue on hover */
     transform: translateY(-2px); /* Lift effect on hover */
 }
-/* Task List Styling */
 #task-list {
     list-style: none;
     padding: 0;
-}
-#task-list li.completed {
-    text-decoration: line-through;
-    color: #62e42e;
-}
-
-#task-list li button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #007bff;
-    font-size: 1.2em;
-    margin-left: 10px;
-}
-
-#task-list li button:hover {
-    color: #0056b3;
 }
 
 .task-item {
