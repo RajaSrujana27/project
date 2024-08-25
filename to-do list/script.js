@@ -47,7 +47,6 @@ function addTask() {
     renderTasks(tasks);
     clearInputs();
 }
-
 function modifyTask(e) {
     const item = e.target;
     const tasks = getTasksFromStorage();
@@ -76,25 +75,25 @@ function modifyTask(e) {
         showModal(task);
     }
 }
+
 function filterTasks(e) {
-    const filter = e.target.dataset.filter;
+    const filter = e.target.getAttribute('data-filter');
     const tasks = getTasksFromStorage();
 
+    let filteredTasks;
     if (filter === 'all') {
-        renderTasks(tasks);
+        filteredTasks = tasks;
     } else if (filter === 'completed') {
-        const completedTasks = tasks.filter(task => task.completed);
-        renderTasks(completedTasks);
+        filteredTasks = tasks.filter(task => task.completed);
     } else {
-        const pendingTasks = tasks.filter(task => !task.completed);
-        renderTasks(pendingTasks);
+        filteredTasks = tasks.filter(task => !task.completed);
     }
-}
 
+    renderTasks(filteredTasks);
+}
 function getTasksFromStorage() {
     return localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
 }
-
 function renderTasks(tasks) {
     taskList.innerHTML = '';
     tasks.forEach(task => {
@@ -119,6 +118,12 @@ function renderTasks(tasks) {
         taskList.appendChild(taskItem);
     });
 }
+
+function getTasksFromStorage() {
+    const tasks = localStorage.getItem('tasks');
+    return tasks ? JSON.parse(tasks) : [];
+}
+
 function loadTasks() {
     const tasks = getTasksFromStorage();
     renderTasks(tasks);
@@ -140,45 +145,3 @@ function showModal(task) {
         <p>Completed: ${task.completed ? 'Yes' : 'No'}</p>
     `;
 }
-function setCookie(name, value, days) {
-    const d = new Date();
-    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-    const expires = "expires=" + d.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/";
-}
-
-function getCookie(name) {
-    const cname = name + "=";
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const ca = decodedCookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(cname) == 0) {
-            return c.substring(cname.length, c.length);
-        }
-    }
-    return "";
-}
-
-function deleteCookie(name) {
-    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-}
-// Save theme preference to cookie
-function saveThemePreference(theme) {
-    setCookie('preferredTheme', theme, 30); // Save for 30 days
-}
-
-// Retrieve and apply theme preference from cookie
-function applySavedTheme() {
-    const theme = getCookie('preferredTheme');
-    if (theme) {
-        document.body.classList.add(theme);
-    }
-}
-
-
-
-
